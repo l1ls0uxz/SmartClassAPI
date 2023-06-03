@@ -1,5 +1,4 @@
-﻿using SmartClassAPI.Data;
-using SmartClassAPI.Model;
+﻿using SmartClassAPI.Model;
 using System.Collections.Generic;
 
 namespace SmartClassAPI.Repository.MonHocRepo

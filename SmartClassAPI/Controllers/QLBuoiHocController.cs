@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore;
 using SmartClassAPI.Data;
 using SmartClassAPI.HubConfig;
 using SmartClassAPI.Model;
@@ -38,12 +36,12 @@ namespace SmartClassAPI.Controllers
                 TenPhongHoc = bh.PhongHocDatas.TenPhongHoc,
                 IdUser = bh.IdUser,
                 HoTen = bh.Users.HoTen,
-                NgayHoc= bh.NgayHoc,
+                NgayHoc = bh.NgayHoc,
                 Buoi = bh.Buoi,
                 IdTinhTrang = bh.IdTinhTrang,
                 TenTinhTrang = bh.TinhTrang.TenTinhTrang,
             });
-            return buoiHocs.ToList();              
+            return buoiHocs.ToList();
         }
         [HttpGet("{id}")]
         //public async Task<ActionResult<QuanLyBuoiHoc>> GetById(int id)
@@ -87,7 +85,7 @@ namespace SmartClassAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateBuoiHoc(int id, QuanLyBuoiHocMD qlBuoi)
         {
-            var buoi = _context.QuanLyBuoiHoc.SingleOrDefault(b =>b.IdBuoiHoc == id);
+            var buoi = _context.QuanLyBuoiHoc.SingleOrDefault(b => b.IdBuoiHoc == id);
 
             buoi.IdLopHoc = qlBuoi.IdLopHoc;
             buoi.IdPhongHoc = qlBuoi.IdPhongHoc;
@@ -98,9 +96,9 @@ namespace SmartClassAPI.Controllers
             buoi.Buoi = qlBuoi.Buoi;
 
             _context.SaveChanges();
-            
+
             return new JsonResult("Update thành công");
-                                  
+
         }
         [HttpPost]
         public async Task<ActionResult<QuanLyBuoiHoc>> PostBuoiHoc(QuanLyBuoiHoc quanLyBuoiHoc)

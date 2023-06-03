@@ -24,7 +24,7 @@ namespace SmartClassAPI.Controllers
         public IActionResult GetById(int id)
         {
             var monHoc = _monHocRepo.GetById(id);
-            if(monHoc == null)
+            if (monHoc == null)
             {
                 return NotFound();
             }

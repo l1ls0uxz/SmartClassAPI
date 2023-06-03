@@ -18,6 +18,6 @@ namespace SmartClassAPI.Data
         public int? IdUser { get; set; }
         [ForeignKey("IdUser")]
         public User User { get; set; }
-       // public string HoTen { get; set; }
+        // public string HoTen { get; set; }
     }
 }

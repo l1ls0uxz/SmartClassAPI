@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SmartClassAPI.Model;
 using SmartClassAPI.Repository;
-using SmartClassAPI.Repository.TKBRepo;
 
 namespace SmartClassAPI.Controllers
 {
@@ -50,7 +48,7 @@ namespace SmartClassAPI.Controllers
         public IActionResult GetByName(string name)
         {
             var byName = _tkbRepo.GetByName(name);
-            if(byName == null)
+            if (byName == null)
             {
                 return NotFound();
             }

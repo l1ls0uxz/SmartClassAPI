@@ -25,7 +25,7 @@ namespace SmartClassAPI.Repository.PhongHocRepo
             {
                 TenPhongHoc = _phonghoc.TenPhongHoc
             };
-            
+
         }
 
         public void Delete(int id)

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using SmartClassAPI.Data;
@@ -7,7 +6,6 @@ using SmartClassAPI.HubConfig;
 using SmartClassAPI.Model;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SmartClassAPI.Controllers
@@ -24,7 +22,7 @@ namespace SmartClassAPI.Controllers
             _context = context;
             _hubContext = hubContext;
         }
-        
+
         [HttpGet("{id}")]
         public List<NhanDienMD> GetAllNhanDien(int id)
         {
@@ -59,7 +57,7 @@ namespace SmartClassAPI.Controllers
         public async Task<ActionResult<NhanDienData>> PostBuoiHoc(NhanDienData nhanDien)
         {
             var nh = _context.NhanDienDatas.SingleOrDefault(b => b.IdBuoiHoc == nhanDien.IdBuoiHoc && b.IdUser == nhanDien.IdUser);
-            if(nh == null)
+            if (nh == null)
             {
                 _context.NhanDienDatas.Add(nhanDien);
                 await _context.SaveChangesAsync();
@@ -74,6 +72,6 @@ namespace SmartClassAPI.Controllers
             var nhandien = await _context.NhanDienDatas.FirstOrDefaultAsync(b => b.IdBuoiHoc == id && b.IdUser == idUser);
             return nhandien;
         }
-        
+
     }
 }

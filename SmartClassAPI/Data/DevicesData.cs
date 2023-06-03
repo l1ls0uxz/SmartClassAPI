@@ -17,9 +17,9 @@ namespace SmartClassAPI.Data
         [Key]
         public int IdDevice { get; set; }
         //[Required]
-        
+
         public string DeviceName { get; set; }
-               
+
         public string MieuTaCongDung { get; set; }
         //public DeviceTpye DeviceType { get; set; }
         //public DeviceTpye DeviceType { get; set; }
