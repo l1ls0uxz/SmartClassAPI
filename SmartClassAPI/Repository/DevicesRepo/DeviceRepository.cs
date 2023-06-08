@@ -45,7 +45,7 @@ namespace SmartClassAPI.Repository.DevicesRepo
                     //LoaiUser = _devices.User.LoaiUser,
                 };
             }
-            else if(_devices.IdUser == null)
+            else if (_devices.IdUser == null)
             {
                 return new DevicesVM
                 {
@@ -75,7 +75,7 @@ namespace SmartClassAPI.Repository.DevicesRepo
                     //LoaiUser = _devices.User.LoaiUser,
                 };
             }
-                      
+
         }
 
         public void DeleteById(int id)

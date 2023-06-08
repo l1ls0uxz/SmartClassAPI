@@ -24,14 +24,14 @@ namespace SmartClassAPI.Controllers
         public IActionResult GetById(int id)
         {
             var lopHoc = _lopHocRepo.GetById(id);
-            if(lopHoc == null)
+            if (lopHoc == null)
             {
                 return NotFound();
             }
             else
             {
                 return Ok(lopHoc);
-            }            
+            }
         }
         [HttpPut("{id}")]
         public IActionResult Update(int id, LopHocVM lopHoc)
@@ -44,7 +44,7 @@ namespace SmartClassAPI.Controllers
             catch
             {
                 return new JsonResult("Chỉnh sửa Không thành công");
-            } 
+            }
         }
         [HttpPost]
         public JsonResult Add(LopHocModel lopHoc)

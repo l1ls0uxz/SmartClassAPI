@@ -230,9 +230,6 @@ namespace SmartClassAPI.Migrations
                     b.Property<string>("Buoi")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GhiChu")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("IdLopHoc")
                         .HasColumnType("int");
 

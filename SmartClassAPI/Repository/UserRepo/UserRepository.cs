@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore;
 using SmartClassAPI.Data;
 using SmartClassAPI.HubConfig;
 using SmartClassAPI.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -221,7 +219,7 @@ namespace SmartClassAPI.Repository.UserRepo
             _user.IdLoai = user.IdLoai;
             _user.IdHocSinh = user.IdHocSinh;
             _user.IdLopHoc = user.IdLopHoc;
-            
+
 
             Notification notification = new Notification()
             {

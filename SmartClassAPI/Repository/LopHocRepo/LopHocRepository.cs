@@ -50,22 +50,22 @@ namespace SmartClassAPI.Repository.LopHocRepo
                 NgayTao = (DateTime)lh.NgayTao,
                 NgayBatDau = (DateTime)lh.NgayBatDau,
                 User = lh.Users.ToList()
-            }); 
+            });
             return lopHocs.ToList();
         }
 
         public LopHocVM GetById(int id)
         {
-            var _lopHoc = _context.LopHocs.FirstOrDefault(lh =>lh.IdLopHoc == id);
+            var _lopHoc = _context.LopHocs.FirstOrDefault(lh => lh.IdLopHoc == id);
             //var us = _context.Entry(_lopHoc);
             if (_lopHoc != null)
             {
                 return new LopHocVM
                 {
                     IdLopHoc = _lopHoc.IdLopHoc,
-                    MaLopHoc = _lopHoc.MaLopHoc,     
-                    NgayBatDau= (DateTime)_lopHoc.NgayBatDau,
-                    NgayTao= (DateTime)_lopHoc.NgayTao,
+                    MaLopHoc = _lopHoc.MaLopHoc,
+                    NgayBatDau = (DateTime)_lopHoc.NgayBatDau,
+                    NgayTao = (DateTime)_lopHoc.NgayTao,
                     //User = _lopHoc.Users.ToList()
                 };
             }

@@ -9,7 +9,7 @@ namespace SmartClassAPI.Data
         [Key]
         public int IdLoai { get; set; }
         public string TenLoai { get; set; }
-        public string? MotaLoai { get; set;}
+        public string? MotaLoai { get; set; }
 
     }
 }

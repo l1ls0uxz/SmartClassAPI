@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 namespace SmartClassAPI.Model
-{    
+{
     public class LopHocVM : LopHocModel
     {
         public int IdLopHoc { get; set; }
@@ -15,7 +15,7 @@ namespace SmartClassAPI.Model
 
     public class LopHocModel
     {
-        
+
         public string MaLopHoc { get; set; }
         //public User User { get; set; }
         public DateTime? NgayTao { get; set; }
