@@ -30,16 +30,16 @@ namespace SmartClassAPI.Repository.MonHocRepo
             var mh = _context.Entry(_monHoc);
             mh.Reference(mh => mh.LopHoc).Load();
             return new MonHocVM
-            {   
+            {
                 IdMonHoc = _monHoc.IdMonHoc,
                 TenMonHoc = _monHoc.TenMonHoc,
                 NgayBatDau = _monHoc.NgayBatDau,
                 SoTiet = _monHoc.SoTiet,
                 IdUser = _monHoc.IdUser,
-                IdLopHoc= _monHoc.IdLopHoc,
+                IdLopHoc = _monHoc.IdLopHoc,
                 MaLopHoc = _monHoc.LopHoc.MaLopHoc,
                 IdPhongHoc = _monHoc.IdPhongHoc,
-            }; 
+            };
         }
 
         public void Delete(int id)
@@ -70,7 +70,7 @@ namespace SmartClassAPI.Repository.MonHocRepo
                 TenTinhTrang = mh.TinhTrangMH.TenTinhTrang,
                 //LopHoc = mh.LopHocs.First()
             });
-            return monHoc.ToList();            
+            return monHoc.ToList();
         }
         public List<MonHocVM> GetTinhTrang(int id)
         {
@@ -110,7 +110,7 @@ namespace SmartClassAPI.Repository.MonHocRepo
                     //MaLopHoc = monHoc.LopHoc.MaLopHoc,
                     HoTen = monHoc.User.HoTen,
                     //TenTinhTrang = monHoc.TinhTrangMH.TenTinhTrang,
-                };                 
+                };
             }
             return null;
         }
@@ -118,7 +118,7 @@ namespace SmartClassAPI.Repository.MonHocRepo
         public void Update(int id, MonHocVM monHoc)
         {
             var _monHoc = _context.MonHocs.SingleOrDefault(mh => mh.IdMonHoc == id);
-            if(_monHoc != null)
+            if (_monHoc != null)
             {
                 _monHoc.IdMonHoc = id;
                 _monHoc.TenMonHoc = monHoc.TenMonHoc;

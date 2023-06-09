@@ -18,6 +18,6 @@ namespace SmartClassAPI.Model
         public string HoTen { get; set; }
         //public LoaiUser LoaiUser { get; set; }
         public PhongHocData PhongHocData { get; set; }
-        public User User { get; set; }        
+        public User User { get; set; }
     }
 }

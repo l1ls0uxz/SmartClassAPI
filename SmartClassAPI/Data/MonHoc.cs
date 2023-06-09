@@ -16,10 +16,10 @@ namespace SmartClassAPI.Data
         public int SoTiet { get; set; }
         public int? IdLopHoc { get; set; }
         [ForeignKey("IdLopHoc")]
-        public LopHoc LopHoc { get; set; }        
+        public LopHoc LopHoc { get; set; }
         public int? IdUser { get; set; }
         [ForeignKey("IdUser")]
-        public User User { get; set; }          
+        public User User { get; set; }
         public int? IdPhongHoc { get; set; }
         [ForeignKey("IdPhongHoc")]
         public PhongHocData PhongHoc { get; set; }
@@ -32,6 +32,6 @@ namespace SmartClassAPI.Data
         {
             TkbDatas = new HashSet<TkbData>(); // khi khởi tạo truyền về 1 list rỗng trước
         }
-        
+
     }
 }

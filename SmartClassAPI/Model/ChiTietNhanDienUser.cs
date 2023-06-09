@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SmartClassAPI.Model
+﻿namespace SmartClassAPI.Model
 {
     public class ChiTietNhanDienUser
     {

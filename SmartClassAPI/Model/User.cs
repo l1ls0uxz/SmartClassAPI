@@ -13,14 +13,14 @@ namespace SmartClassAPI.Model
         public string MatKhau { get; set; }
         public string TenLoai { get; set; }
     }
-    public class UserModel  
+    public class UserModel
     {
         public string HoTen { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
         public string DienThoai { get; set; }
         public string DiaChi { get; set; }
-        public int? IdLoai { get; set; }        
+        public int? IdLoai { get; set; }
         public int? IdHocSinh { get; set; }
         public int? IdLopHoc { get; set; }
 

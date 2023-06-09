@@ -19,8 +19,8 @@ namespace SmartClassAPI.Model
         public DateTime NgayThan { get; set; }
     }
     public class TkbVM : TkbModel
-    {        
-        public User User { get; set; }              
+    {
+        public User User { get; set; }
         // relationship
         public PhongHocData PhongHocData { get; set; }
         public MonHoc MonHoc { get; set; }

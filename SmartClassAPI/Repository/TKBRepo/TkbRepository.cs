@@ -39,7 +39,7 @@ namespace SmartClassAPI.Repository.TKBRepo
                 MaLopHoc = _tkb.LopHoc.MaLopHoc,
                 IdMonHoc = _tkb.IdMonHoc,
                 TenMonHoc = _tkb.MonHoc.TenMonHoc,
-                IdPhongHoc= _tkb.IdPhongHoc,
+                IdPhongHoc = _tkb.IdPhongHoc,
                 TenPhongHoc = _tkb.PhongHocData.TenPhongHoc,
                 HoTen = _tkb.User.HoTen,
                 NgayThan = _tkb.NgayThan,

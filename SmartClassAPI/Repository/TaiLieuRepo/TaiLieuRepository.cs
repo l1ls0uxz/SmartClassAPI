@@ -37,7 +37,7 @@ namespace SmartClassAPI.Repository.TaiLieuRepo
         public void Delete(int id)
         {
             var taiLieu = _context.TaiLieuHocTaps.SingleOrDefault(tl => tl.IdTaiLieu == id);
-            if(taiLieu != null)
+            if (taiLieu != null)
             {
                 _context.Remove(taiLieu);
                 _context.SaveChanges();
@@ -52,9 +52,9 @@ namespace SmartClassAPI.Repository.TaiLieuRepo
                 TenTaiLieu = tl.TenTaiLieu,
                 TenMonHoc = tl.MonHoc.TenMonHoc,
                 IdMonHoc = tl.IdMonHoc,
-                IdUser= tl.IdUser,
+                IdUser = tl.IdUser,
                 HoTen = tl.User.HoTen,
-                UrlTaiLieu =tl.UrlTaiLieu,
+                UrlTaiLieu = tl.UrlTaiLieu,
             });
             return taiLieu.ToList();
         }
@@ -62,7 +62,7 @@ namespace SmartClassAPI.Repository.TaiLieuRepo
         public TaiLieuVM GetById(int id)
         {
             var taiLieu = _context.TaiLieuHocTaps.SingleOrDefault(tl => tl.IdTaiLieu == id);
-            if(taiLieu == null)
+            if (taiLieu == null)
             {
                 return null;
             }

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.SignalR;
 using SmartClassAPI.HubConfig;
 using SmartClassAPI.Model;
 using SmartClassAPI.Repository.UserRepo;
-using System;
 
 namespace SmartClassAPI.Controllers
 {
@@ -17,7 +16,7 @@ namespace SmartClassAPI.Controllers
 
         public UsersController(IUserRepository userRepo, IHubContext<BroadcastHub, IHubClient> hubContext)
         {
-            _userRepo = userRepo;
+            _userRepo = userRepo; 
             _hubContext = hubContext;
         }
         [HttpGet]
@@ -82,7 +81,7 @@ namespace SmartClassAPI.Controllers
             try
             {
                 _userRepo.Update(id, user);
-                return new JsonResult("Sửa Thành Công"); 
+                return new JsonResult("Sửa Thành Công");
             }
             catch
             {

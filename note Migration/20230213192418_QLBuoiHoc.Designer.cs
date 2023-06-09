@@ -3,36 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartClassAPI.Data;
 
 namespace SmartClassAPI.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230213192418_QLBuoiHoc")]
+    partial class QLBuoiHoc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.15")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("SmartClassAPI.Data.CanhBao", b =>
-                {
-                    b.Property<int>("IdCanhBao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("TenCanhBao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdCanhBao");
-
-                    b.ToTable("CanhBao");
-                });
 
             modelBuilder.Entity("SmartClassAPI.Data.DevicesData", b =>
                 {
@@ -147,40 +134,6 @@ namespace SmartClassAPI.Migrations
                     b.ToTable("MonHoc");
                 });
 
-            modelBuilder.Entity("SmartClassAPI.Data.NhanDienData", b =>
-                {
-                    b.Property<int>("IdNhanDien")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Connect")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdBuoiHoc")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdCanhBao")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdUser")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NhanDien")
-                        .IsRequired()
-                        .HasColumnType("Text");
-
-                    b.HasKey("IdNhanDien");
-
-                    b.HasIndex("IdBuoiHoc");
-
-                    b.HasIndex("IdCanhBao");
-
-                    b.HasIndex("IdUser");
-
-                    b.ToTable("NhanDien");
-                });
-
             modelBuilder.Entity("SmartClassAPI.Data.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -218,52 +171,6 @@ namespace SmartClassAPI.Migrations
                     b.HasKey("IdPhongHoc");
 
                     b.ToTable("PhongHoc");
-                });
-
-            modelBuilder.Entity("SmartClassAPI.Data.QuanLyBuoiHoc", b =>
-                {
-                    b.Property<int>("IdBuoiHoc")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Buoi")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GhiChu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdLopHoc")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdMonHoc")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdPhongHoc")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdTinhTrang")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdUser")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("NgayHoc")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("IdBuoiHoc");
-
-                    b.HasIndex("IdLopHoc");
-
-                    b.HasIndex("IdMonHoc");
-
-                    b.HasIndex("IdPhongHoc");
-
-                    b.HasIndex("IdTinhTrang");
-
-                    b.HasIndex("IdUser");
-
-                    b.ToTable("QuanLyBuoiHoc");
                 });
 
             modelBuilder.Entity("SmartClassAPI.Data.TTMonDT", b =>
@@ -311,21 +218,6 @@ namespace SmartClassAPI.Migrations
                     b.HasIndex("IdUser");
 
                     b.ToTable("TaiLieuHocTap");
-                });
-
-            modelBuilder.Entity("SmartClassAPI.Data.TinhTrangBuoiHoc", b =>
-                {
-                    b.Property<int>("IdTinhTrang")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("TenTinhTrang")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdTinhTrang");
-
-                    b.ToTable("TinhTrangBuoiHoc");
                 });
 
             modelBuilder.Entity("SmartClassAPI.Data.TkbData", b =>
@@ -454,31 +346,6 @@ namespace SmartClassAPI.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SmartClassAPI.Data.NhanDienData", b =>
-                {
-                    b.HasOne("SmartClassAPI.Data.QuanLyBuoiHoc", "QuanLyBuoiHoc")
-                        .WithMany()
-                        .HasForeignKey("IdBuoiHoc")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SmartClassAPI.Data.CanhBao", "CanhBao")
-                        .WithMany()
-                        .HasForeignKey("IdCanhBao")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SmartClassAPI.Data.User", "User")
-                        .WithMany()
-                        .HasForeignKey("IdUser");
-
-                    b.Navigation("CanhBao");
-
-                    b.Navigation("QuanLyBuoiHoc");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("SmartClassAPI.Data.Notification", b =>
                 {
                     b.HasOne("SmartClassAPI.Data.User", "User")
@@ -486,49 +353,6 @@ namespace SmartClassAPI.Migrations
                         .HasForeignKey("IdUser");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("SmartClassAPI.Data.QuanLyBuoiHoc", b =>
-                {
-                    b.HasOne("SmartClassAPI.Data.LopHoc", "LopHoc")
-                        .WithMany()
-                        .HasForeignKey("IdLopHoc")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SmartClassAPI.Data.MonHoc", "MonHoc")
-                        .WithMany()
-                        .HasForeignKey("IdMonHoc")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SmartClassAPI.Data.PhongHocData", "PhongHocDatas")
-                        .WithMany()
-                        .HasForeignKey("IdPhongHoc")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SmartClassAPI.Data.TinhTrangBuoiHoc", "TinhTrang")
-                        .WithMany()
-                        .HasForeignKey("IdTinhTrang")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SmartClassAPI.Data.User", "Users")
-                        .WithMany()
-                        .HasForeignKey("IdUser")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("LopHoc");
-
-                    b.Navigation("MonHoc");
-
-                    b.Navigation("PhongHocDatas");
-
-                    b.Navigation("TinhTrang");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("SmartClassAPI.Data.TaiLieuHocTap", b =>

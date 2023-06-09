@@ -8,7 +8,7 @@ namespace SmartClassAPI.Data
     {
         [Key]
         public int Id { get; set; }
-        public int? IdUser  { get; set; }
+        public int? IdUser { get; set; }
         [ForeignKey("IdUser")]
         public User User { get; set; }
         public string HoTen { get; set; }

@@ -6,7 +6,7 @@ namespace SmartClassAPI.Data
 {
     [Table("QuanLyBuoiHoc")]
     public class QuanLyBuoiHoc
-    {        
+    {
         [Key]
         public int IdBuoiHoc { get; set; }
         public int IdMonHoc { get; set; }
@@ -17,7 +17,7 @@ namespace SmartClassAPI.Data
         public LopHoc LopHoc { get; set; }
         public int IdPhongHoc { get; set; }
         [ForeignKey("IdPhongHoc")]
-        public PhongHocData PhongHocDatas { get; set; } 
+        public PhongHocData PhongHocDatas { get; set; }
         public int IdUser { get; set; }
         [ForeignKey("IdUser")]
         public User Users { get; set; }
@@ -26,6 +26,7 @@ namespace SmartClassAPI.Data
         public int IdTinhTrang { get; set; }
         [ForeignKey("IdTinhTrang")]
         public TinhTrangBuoiHoc TinhTrang { get; set; }
+        public string GhiChu { get; set; }
 
     }
 }
