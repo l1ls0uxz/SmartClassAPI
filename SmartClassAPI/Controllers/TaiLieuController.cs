@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SmartClassAPI.Model;
 using SmartClassAPI.Repository.TaiLieuRepo;
 
@@ -35,7 +34,7 @@ namespace SmartClassAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, TaiLieuVM taiLieu)
         {
-            if(taiLieu.IdTaiLieu == id)
+            if (taiLieu.IdTaiLieu == id)
             {
                 _taiLieuRepo.Update(id, taiLieu);
                 return NoContent();

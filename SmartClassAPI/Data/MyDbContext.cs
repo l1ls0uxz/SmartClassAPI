@@ -7,7 +7,7 @@ namespace SmartClassAPI.Data
         public MyDbContext(DbContextOptions options) : base(options) { }
         # region DbSet
         public DbSet<User> Users { get; set; }
-        public DbSet<MonHoc> MonHocs { get; set; }        
+        public DbSet<MonHoc> MonHocs { get; set; }
         public DbSet<LopHoc> LopHocs { get; set; }
         public DbSet<TaiLieuHocTap> TaiLieuHocTaps { get; set; }
         public DbSet<PhongHocData> PhongHocDatas { get; set; }
@@ -25,6 +25,11 @@ namespace SmartClassAPI.Data
         {
             base.OnModelCreating(modelBuilder);
             // tạo Fluent API
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.IdUser);
+                entity.ToTable("User");
+            });
             modelBuilder.Entity<PhongHocData>(e =>
             {
                 e.ToTable("PhongHoc");
@@ -69,5 +74,5 @@ namespace SmartClassAPI.Data
         //    optionsBuilder.UseLazyLoadingProxies();
         //}
     }
-    
+
 }

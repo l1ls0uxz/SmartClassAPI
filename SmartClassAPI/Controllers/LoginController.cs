@@ -1,50 +1,55 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using SmartClassAPI.Data;
+using SmartClassAPI.Repository.UserRepo;
+using System.Threading.Tasks;
 
 namespace SmartClassAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
-        private readonly string _connectionString = "Data Source=Revision-PC\\STARDEV;Initial Catalog=SmartClassAPI;Integrated Security=True";
+        private readonly IUserRepository _userRepository;
+
+        public LoginController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
 
         [HttpPost]
-        [Route("Login")]
-        public IActionResult Login(string email, string password)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            // create SQL connection
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            var user = await _userRepository.CheckLogin(request.UserName, request.Password);
+
+            if (user != null)
             {
-                // create SQL command to search for matching email and password
-                string query = "SELECT * FROM [User] WHERE Email = @Email AND MatKhau = @Password";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Email", email);
-                command.Parameters.AddWithValue("@Password", password);
-
-                // open SQL connection
-                connection.Open();
-
-                // execute SQL command and return results
-                using (SqlDataReader reader = command.ExecuteReader())
+                return Ok(new LoginResponse
                 {
-                    if (reader.Read())
-                    {
-                        // email and password match a user in the database
-                        int userId = reader.GetInt32("IdUser");
-                        string message = "User match in database!.";
-                        return Ok(new {message,userId});
-                    }
-                    else
-                    {
-                        // email and password do not match any user in the database
-                        return BadRequest("Invalid email or password!.");
-                    }
-                }
+                    ErrType = 1,
+                    Message = "Login successful",
+                    User = user
+                });
+            }
+            else
+            {
+                return Ok(new LoginResponse
+                {
+                    ErrType = 2,
+                    Message = "Incorrect username or password"
+                });
             }
         }
+    }
+    public class LoginRequest
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+    }
+
+    public class LoginResponse
+    {
+        public int ErrType { get; set; }
+        public string Message { get; set; }
+        public User User { get; set; }
     }
 }

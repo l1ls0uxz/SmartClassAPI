@@ -1,6 +1,5 @@
 ﻿using SmartClassAPI.Data;
 using System;
-using System.Collections.Generic;
 
 namespace SmartClassAPI.Model
 {
@@ -9,7 +8,7 @@ namespace SmartClassAPI.Model
         public string TenMonHoc { get; set; }
         public DateTime NgayBatDau { get; set; }
         public int SoTiet { get; set; }
-        public int? IdLopHoc { get; set; }        
+        public int? IdLopHoc { get; set; }
         public int? IdUser { get; set; }
         public int? IdPhongHoc { get; set; }
         public string TenPhongHoc { get; set; }
@@ -19,13 +18,13 @@ namespace SmartClassAPI.Model
     {
         public int IdMonHoc { get; set; }
         public string MaLopHoc { get; set; }
-        public string HoTen { get ; set; }
-        
+        public string HoTen { get; set; }
+
         public string TenTinhTrang { get; set; }
         public User User { get; set; }
-        public LopHoc LopHoc { get; set; }     
-        public PhongHocData PhongHocData { get; set; }      
+        public LopHoc LopHoc { get; set; }
+        public PhongHocData PhongHocData { get; set; }
         public TTMonDT TinhTrangMH { get; set; }
     }
-    
+
 }

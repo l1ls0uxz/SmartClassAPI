@@ -1,10 +1,13 @@
-﻿using SmartClassAPI.Model;
+﻿using SmartClassAPI.Data;
+using SmartClassAPI.Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SmartClassAPI.Repository.UserRepo
 {
     public interface IUserRepository
     {
+        Task<User> CheckLogin(string userName, string password);
         List<UserVM> GetAll();
         List<UserVM> GetByName(string search);
         UserVM GetById(int id);

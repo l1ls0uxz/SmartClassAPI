@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SmartClassAPI.Data;
 using SmartClassAPI.HubConfig;
 using SmartClassAPI.Model;
-using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SmartClassAPI.Repository.UserRepo
 {
@@ -19,6 +21,62 @@ namespace SmartClassAPI.Repository.UserRepo
             _context = context;
             _hubContext = hubContext;
         }
+        public async Task<User> CheckLogin(string userName, string password)
+        {
+            var userNameParam = new SqlParameter("@UserName", userName);
+            var passwordParam = new SqlParameter("@Password", password);
+            var errTypeParam = new SqlParameter("@ErrType", SqlDbType.Int)              { Direction = ParameterDirection.Output };
+            var messageParam = new SqlParameter("@Message", SqlDbType.NVarChar, 100)    { Direction = ParameterDirection.Output };
+            var idUserParam = new SqlParameter("@IdUser", SqlDbType.Int)                { Direction = ParameterDirection.Output };
+            var hoTenParam = new SqlParameter("@HoTen", SqlDbType.NVarChar, 50)         { Direction = ParameterDirection.Output };
+            var idLoaiParam = new SqlParameter("@IdLoai", SqlDbType.Int)                { Direction = ParameterDirection.Output };
+            var emailParam = new SqlParameter("@Email", SqlDbType.NVarChar, 50)         { Direction = ParameterDirection.Output };
+            var dienThoaiParam = new SqlParameter("@DienThoai", SqlDbType.NVarChar, 20) { Direction = ParameterDirection.Output };
+            var diaChiParam = new SqlParameter("@DiaChi", SqlDbType.NVarChar, 100)      { Direction = ParameterDirection.Output };
+            var idHocSinhParam = new SqlParameter("@IdHocSinh", SqlDbType.Int)          { Direction = ParameterDirection.Output };
+            var idLopHocParam = new SqlParameter("@IdLopHoc", SqlDbType.Int)            { Direction = ParameterDirection.Output };
+
+            var result = await _context.Users.FromSqlRaw("EXECUTE dbo.CheckLogin " +
+                "@UserName, " +
+                "@Password, " +
+                "@ErrType OUTPUT, " +
+                "@Message OUTPUT, " +
+                "@IdUser OUTPUT, " +
+                "@HoTen OUTPUT, " +
+                "@IdLoai OUTPUT, " +
+                "@Email OUTPUT, " +
+                "@DienThoai OUTPUT, " +
+                "@DiaChi OUTPUT, " +
+                "@IdHocSinh OUTPUT, " +
+                "@IdLopHoc OUTPUT",
+                userNameParam, passwordParam, errTypeParam, messageParam, idUserParam, hoTenParam, idLoaiParam, emailParam, dienThoaiParam, diaChiParam, idHocSinhParam, idLopHocParam).ToListAsync();
+
+            var errType = (int)errTypeParam.Value;
+
+            if (errType == 1)
+            {
+                var user = new User
+                {
+                    IdUser = (int)idUserParam.Value,
+                    HoTen = (string)hoTenParam.Value,
+                    UserName = userName,
+                    MatKhau = password,
+                    IdLoai = (int)idLoaiParam.Value,
+                    //Email = (string)emailParam.Value,
+                    //DienThoai = (string)dienThoaiParam.Value,
+                    //DiaChi = (string)diaChiParam.Value,
+                    //IdHocSinh = (int?)idHocSinhParam.Value,
+                    //IdLopHoc = (int?)idLopHocParam.Value
+                };
+
+                return user;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public UserVM Add(UserModel user)
         {
             var _user = new User // gắn trực tiếp vào data
@@ -221,7 +279,7 @@ namespace SmartClassAPI.Repository.UserRepo
             _user.IdLoai = user.IdLoai;
             _user.IdHocSinh = user.IdHocSinh;
             _user.IdLopHoc = user.IdLopHoc;
-            
+
 
             Notification notification = new Notification()
             {
